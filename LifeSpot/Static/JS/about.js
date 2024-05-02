@@ -1,13 +1,13 @@
 ﻿function getReview() {
     let review = {}
 
-    review["username"] = promt('Как вас зовут?')
+    review["username"] = prompt('Как вас зовут?')
     if (review["username"] == null) {
         return
     }
 
     review["comment"] = prompt("Напишите свой отзыв")
-    if (review["commemt"] == null) {
+    if (review["comment"] == null) {
         return
     }
 
@@ -17,8 +17,8 @@
 }
 
 const writeReview = review => {
-    document.getElementsByClassName('reviews')[0].innerHTML += '    <div class="review-text">\n' +
-        `<p> <i> <b>${review['userName']}</b>  ${review['date']}</i></p>` +
-        `<p>${review['comment']}</p>` +
+    document.getElementsByClassName("reviews")[0].innerHTML += '    <div class="review-text">\n' +
+        `<p> <i> <b>${review["username"]}^:</b>  ${review["date"]}</i></p>` +
+        `<p>${review["comment"]}</p>` +
         '</div>';
 }
