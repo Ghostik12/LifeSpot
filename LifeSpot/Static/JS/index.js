@@ -12,7 +12,7 @@
 }
 // создадим объект Map для хранения сессии
 let session = {
-    'startDate' : new Date().toLocaleString(),
+    'startDate' : new Date(),
     'userAgent' : window.navigator.userAgent,
     'userAge' : prompt("Пожалуйста, введите ваш возраст")
 };
