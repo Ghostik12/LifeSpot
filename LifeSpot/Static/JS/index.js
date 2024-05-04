@@ -56,7 +56,7 @@ function checkAge() {
     }
 }
 
-let sessionLog = function logSession(session) {
+let sessionLog = function logSession() {
     console.log('Начало сессии: ' + session.startDate)
     console.log('Даныне клиента: ' + session.userAgent)
     console.log('Возраст пользователя: : ' + session.userAge)
