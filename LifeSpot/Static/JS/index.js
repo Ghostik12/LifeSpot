@@ -11,44 +11,38 @@
     }
 }
 // создадим объект Map для хранения сессии
-let session = {
-    'startDate' : new Date(),
-    'userAgent' : window.navigator.userAgent,
-    'userAge' : prompt("Пожалуйста, введите ваш возраст")
-};
+//let session = {
+//    'startDate' : new Date(),
+//    'userAgent' : window.navigator.userAgent,
+//    'userAge' : prompt("Пожалуйста, введите ваш возраст")
+//};
 
-//function handleSession() {
-////    // создадим объект Map для хранения сессии
-////    // Сохраним UserAgent
-//    session.set("userAgent", window.navigator.userAgent)
+function handleSession() {
+    if (window.sessionStorage.getItem('startDate') == null) {
+        window.sessionStorage.setItem('startDate', new Date().toLocaleString())
+    }
 
+    if (window.sessionStorage.getItem('userAgent') == null) {
+        window.sessionStorage.setItem('userAgent', window.navigator.userAgent)
+    }
 
-//    session.set("userAge", prompt("Пожалуйста, введите ваш возраст"))
-//    session.set("startDate", new Date().toLocaleString())
+    if (window.sessionStorage.getItem('userAge') == null) {
+        let input = prompt('Pls, write your age:')
+        window.sessionStorage.setItem('userAge', input)
 
-//    // Проверка на возраст и сохранение сессии
-//    //if (session.get("age") >= 18) {
-//    //    let startDate = new Date().toLocaleString();
+        checker(true)
+    } else {
+        checker(false)
+    }
 
-//    //    alert("Приветствуем на LifeSpot! " + '\n' + "Текущее время: " + startDate);
-//    //    session.set("startDate", startDate)
-//    //}
-//    //else {
-//    //    alert("Наши трансляции не предназначены для лиц моложе 18 лет. Вы будете перенаправлены");
-//    //    window.location.href = "http://www.google.com"
-//    //}
-//    //// Вывод в консоль
-//    //for (let result of session) {
-//    //    console.log(result)
-//    //}
-    
-//    //return session;
-//}
+    sessionLog()
+}
 
-function checkAge() {
-    // Проверка на возраст и сохранение сессии
-    if (session.get("userAge") >= 18) {
-        alert("Приветствуем на LifeSpot! " + '\n' + "Текущее время: " + new Date().toLocaleString());
+let checker = function (newVisit) {
+    if (window.sessionStorage.getItem('userAge') >= 18) {
+        if (newVisit) {
+            alert("Приветствуем на LifeSpot! " + '\n' + "Текущее время: " + new Date().toLocaleString());
+        }
     }
     else {
         alert("Наши трансляции не предназначены для лиц моложе 18 лет. Вы будете перенаправлены");
@@ -57,7 +51,7 @@ function checkAge() {
 }
 
 let sessionLog = function logSession() {
-    console.log('Начало сессии: ' + session.startDate)
-    console.log('Даныне клиента: ' + session.userAgent)
-    console.log('Возраст пользователя: : ' + session.userAge)
+    console.log('Начало сессии: ' + window.sessionStorage.getItem('startDate'))
+    console.log('Даныне клиента: ' + window.sessionStorage.getItem('userAgent'))
+    console.log('Возраст пользователя: : ' + window.sessionStorage.getItem('userAge'))
 }
