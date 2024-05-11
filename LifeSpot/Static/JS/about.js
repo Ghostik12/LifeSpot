@@ -34,11 +34,28 @@ function addComment() {
     }
 }
 
+function addLike(Id) {
+    let element = document.getElementById(id);
+
+    let array = element.innerText.split(' ')
+
+    let resultNum = parseInt(array[array.length - 1], 10)
+
+    resultNum += 1
+
+    array[array.length - 1] = '${resultNum}'
+
+    element.innerText = array.join(' ')
+}
+
 const writeReview = review => {
     let likeCounter = '';
 
     if (review.hasOwnProperty('rate')) {
-        likeCounter += '           <b style="color: chocolate">Рейтинг:</b>   ' + review.rate;
+
+        let commandId = Math.random();
+
+        likeCounter += '<button id="' + commandId + '" style="border: none" onclick="addLike(this.id)">' + `❤️ ${review.rate}</button>`
     }
 
     document.getElementsByClassName("reviews")[0].innerHTML += '    <div class="review-text">\n' +
