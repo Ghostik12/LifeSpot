@@ -1,30 +1,37 @@
 ﻿function getReview() {
-    let review = {}
 
-    review["username"] = prompt('Как вас зовут?')
-    if (review["username"] == null) {
+    this.author = prompt('Как вас зовут?')
+    if (this.author == null) {
+        this.empty = true
         return
     }
 
-    review["comment"] = prompt("Напишите свой отзыв")
-    if (review["comment"] == null) {
+    this.comment = prompt("Напишите свой отзыв")
+    if (this.comment == null) {
+        this.empty = true
         return
+    }
+
+    this.date = new Date().toLocaleString()
+}
+
+function addComment() {
+
+    let review = new getReview()
+
+    if (review.empty) {
+        return;
     }
 
     let enableLikes = confirm("Хотите чтобы ваш комментарий оценили?")
+
     if (enableLikes) {
         let comment = Object.create(review)
         comment["rate"] = 0;
-        review["date"] = new Date().toLocaleString()
         writeReview(comment)
     } else {
-        review["date"] = new Date().toLocaleString()
         writeReview(review)
     }
-
-    //review["date"] = new Date().toLocaleString()
-
-    //writeReview(review)
 }
 
 const writeReview = review => {
@@ -35,7 +42,7 @@ const writeReview = review => {
     }
 
     document.getElementsByClassName("reviews")[0].innerHTML += '    <div class="review-text">\n' +
-        `<p> <i> <b>${review["username"]}^:</b>  ${review["date"]}${likeCounter}</i></p>` +
+        `<p> <i> <b>${review["author"]}^:</b>  ${review["date"]}${likeCounter}</i></p>` +
         `<p>${review["comment"]}</p>` +
         '</div>';
 }
