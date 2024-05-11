@@ -51,6 +51,13 @@ namespace LifeSpot
                     await context.Response.WriteAsync(html.ToString());
                 });
 
+                endpoints.MapGet("/Static/JS/testing.js", async context =>
+                {
+                    var jsPath = Path.Combine(Directory.GetCurrentDirectory(), "Static", "JS", "testing.js");
+                    var js = await File.ReadAllTextAsync(jsPath);
+                    await context.Response.WriteAsync(js);
+                });
+
                 endpoints.MapGet("/Static/CSS/index.css", async context =>
                 {
                     var cssPath = Path.Combine(Directory.GetCurrentDirectory(), "Static", "CSS", "index.css");
