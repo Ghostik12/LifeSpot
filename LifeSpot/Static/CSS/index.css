@@ -91,3 +91,17 @@ input:focus {
     padding-left: 1%;
     padding-top: 1%;
 }
+
+.slider{
+    width: 256px;
+    height: 256px;
+    border: 2px solid black;
+    margin: 30px auto;
+}
+
+.slider-line{
+    height: 256px;
+    width: 1024px;
+    background: orangered;
+    display: flex;
+}
